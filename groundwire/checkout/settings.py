@@ -8,13 +8,13 @@ TESTING = False
 
 
 class IGroundwireCheckoutSettings(Interface):
-    
+
     payment_processor = schema.Choice(
         title = u'Payment Processor',
         vocabulary = 'groundwire.checkout.PaymentMethods',
         default = u'Testing Processor',
         )
-    
+
     force_ssl = schema.Bool(
         title = u'Force SSL?',
         description = u'When the Zope instance is not running in debug mode, '
@@ -24,5 +24,7 @@ class IGroundwireCheckoutSettings(Interface):
 
 
 def is_ssl_enabled():
-    force_ssl = getUtility(IRegistry).forInterface(IGroundwireCheckoutSettings, False).force_ssl
-    return force_ssl and not TESTING and not DevelopmentMode
+    if TESTING or DevelopmentMode:
+        return False
+    return getUtility(IRegistry).forInterface(
+                        IGroundwireCheckoutSettings, False).force_ssl
