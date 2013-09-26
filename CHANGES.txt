@@ -1,0 +1,48 @@
+Changelog
+=========
+
+1.0 (unreleased)
+----------------
+
+* If Authorize.net held the authorization for review, continue to the confirmation
+  screen.
+  [davisagli - 2012-06-19]
+
+* If the buyer is logged in, add their username to the user_id property on the
+  order.
+  [jessesnyder - 2012-06-19]
+
+* Include portal path in the session key for the cart, to avoid collisions
+  between carts of multiple sites in the same instance.
+  [davisagli - 2012-01-23]
+
+* Sites can now opt out of showing the confirmation page for pfg.donationform
+  by setting the pfg.donationform_suppress_confirmation key in the request.
+  [davisagli - 2011-12-28]
+
+* Don't require postal code (to support international payments).
+  [davisagli - 2011-09-28]
+
+* Fix pfg.donationform support to not redirect if the charge was declined.
+  [davisagli - 2011-08-24]
+
+* Fix confirmation page to not error out if the cart is missing.
+  [davisagli - 2011-08-24]
+
+* Fix handling of declined payments.
+  [davisagli - 2011-07-18]
+
+* Don't ask for payment info if total is 0.
+  [davisagli - 2011-07-14]
+
+* Disable ZPublisher request retries while placing an order.
+  [davisagli - 2011-07-12]
+
+* Remove the order_id from the session once the confirmation view has been seen.
+  [davisagli - 2011-07-12]
+
+* If pfg.donationform is installed, make it go to the order confirmation view on submission.
+  [davisagli - 2011-07-11]
+
+* Initial release.
+  [davisagli - 2011-07-01]

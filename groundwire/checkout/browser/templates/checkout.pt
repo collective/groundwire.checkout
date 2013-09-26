@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone"
+      metal:use-macro="context/main_template/macros/master">
+
+  <metal:block fill-slot="main">
+
+    <style type="text/css">
+    .listing {
+        width: 100%;
+    }
+    tr.cart-row-discount {
+      border-top: none;
+    }
+    tr.cart-row-discount td {
+      text-align: right;
+    }
+    </style>
+
+    <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+
+    <div id="content-core"
+         tal:define="cart view/cart">
+      
+        <tal:noitems tal:condition="python:not len(cart)">
+          You don't have any items in your cart.
+        </tal:noitems>
+      
+        <tal:hasitems tal:condition="python:len(cart)">      
+          <tal:form metal:use-macro="context/@@ploneform-macros/titlelessform">
+            <tal:fieldsets metal:fill-slot="fields" tal:define="groups nothing">
+              <div class="row">
+                <div class="cell width-full position-0">
+                  <h2>Cart</h2>
+                  
+                  <tal:cart replace="structure cart/@@cart_table_view" />
+                  
+                </div>
+                
+                
+              </div>
+              <div class="row" tal:condition="view/groups">
+                 
+                <div class="cell width-8 position-0" tal:define="view python:view.groups[0]">
+                    <fieldset>
+                      <legend>Pay by credit card</legend>
+                      <metal:block use-macro="context/@@ploneform-macros/fields" />
+                    </fieldset>
+                </div>
+                <div class="cell width-8 position-8" tal:define="view python:view.groups[1]">
+                  
+                  <fieldset>
+                      <legend>Billing address</legend>
+                      <metal:block use-macro="context/@@ploneform-macros/fields" />
+                  </fieldset>
+                </div>
+              </div>
+            </tal:fieldsets>
+          </tal:form>
+        </tal:hasitems>
+    </div>
+
+  </metal:block>
+
+</html>

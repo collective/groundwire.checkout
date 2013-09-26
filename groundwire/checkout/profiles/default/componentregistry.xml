@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<componentregistry>
+  <utilities>
+    <utility 
+        interface="getpaid.core.interfaces.IOrderManager"
+        factory="getpaid.core.order.OrderManager"
+        />
+  </utilities>
+</componentregistry>

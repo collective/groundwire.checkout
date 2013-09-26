@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone"
+      metal:use-macro="context/main_template/macros/master">
+
+  <metal:block fill-slot="main"
+               tal:define="cart nocall:view/cart|nothing">
+
+    <tal:hasitems tal:condition="nocall:cart|nothing">
+
+    <p style="text-align: right">
+
+        <a href="javascript:this.print();">Print <img tal:attributes="src string:${here/portal_url}/print_icon.png;" alt="Print" /></a>
+
+    </p>
+
+    <h1 class="documentFirstHeading">Thank you!</h1>
+
+    <p class="documentDescription">Your payment has been successfully processed.</p>
+
+    <div id="content-core">
+
+          <p tal:define="txn_id view/txn_id|nothing"
+             tal:condition="txn_id">Transaction ID: <span tal:replace="txn_id"/></p>
+
+          <tal:cart replace="structure cart/@@cart_table_view" />
+
+          <p>If you have any questions about your payment, please <a
+              tal:attributes="href string:${context/portal_url}/contact-us">contact us</a>.</p>
+
+    </div>
+
+    </tal:hasitems>
+
+    <tal:nocart tal:condition="python:not cart">
+        <h1 class="documentFirstHeading">Thank you!</h1>
+
+        <p class="documentDescription">Your payment has been successfully processed.</p>
+    </tal:nocart>
+  </metal:block>
+
+</html>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="getpaid.nullpayment.interfaces.INullPaymentOptions" />
+  <records interface="getpaid.authorizedotnet.interfaces.IAuthorizeNetOptions">
+    <value key="server_url">Test</value>
+  </records>
+  <records interface="groundwire.checkout.settings.IGroundwireCheckoutSettings" />
+</registry>

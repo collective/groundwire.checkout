@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+  
+  <browser:page
+    name="checkout"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class=".checkout.PaymentForm"
+    permission="zope.Public"
+    />
+  
+  <browser:page
+    name="cart_table_view"
+    for="getpaid.core.interfaces.IShoppingCart"
+    class=".cart.CartView"
+    template="templates/cart.pt"
+    permission="zope2.View"
+    />
+  
+  <browser:page
+    name="order-confirmation"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class=".confirmation.OrderConfirmationView"
+    template="templates/confirmation.pt"
+    permission="zope.Public"
+    />
+  
+</configure>
